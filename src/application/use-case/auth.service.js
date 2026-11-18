@@ -1,5 +1,5 @@
 import UserEntity from "../../domain/entities/User.entity.js";
-import AuditEntity from "../../domain/entities/Audit.entity.js";
+import AuditEntity from "../../domain/entities/audit.entity.js";
 import HashService from "../../infrastructure/security/hash.service.js";
 import JwtService from "../../infrastructure/security/jwt.service.js";
  

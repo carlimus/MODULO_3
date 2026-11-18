@@ -1,7 +1,7 @@
 import { Router } from "express";
 import AuthController from "../controllers/auth.controller.js";
-import AuthService from "../../application/use-cases/auth.service.js";
-import UserMongoRepository from "../../infrastructure/database/mongo/user.mongo.repository.js";
+import AuthService from "../../application/use-case/auth.service.js";
+import UserMongoRepository from "../../infrastructure/database/mongodb/user.mongo.repository.js";
 import AuditMySQLRepository from "../../infrastructure/database/mysql/audit.mysql.repository.js";
  
 // Inyección de dependencias

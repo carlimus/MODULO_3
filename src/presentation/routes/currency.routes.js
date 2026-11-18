@@ -1,7 +1,7 @@
 import { Router } from "express";
 import CurrencyController from "../controllers/currency.controller.js";
-import CurrencyService from "../../application/use-cases/currency.service.js";
-import CurrencyMongoRepository from "../../infrastructure/database/mongo/currency.mongo.repository.js";
+import CurrencyService from "../../application/use-case/currency.service.js";
+import CurrencyMongoRepository from "../../infrastructure/database/mongodb/currency.mongo.repository.js";
 import TransactionMySQLRepository from "../../infrastructure/database/mysql/transaction.mysql.repository.js";
 import AuditMySQLRepository from "../../infrastructure/database/mysql/audit.mysql.repository.js";
 import { authMiddleware } from "../middlewares/auth.middleware.js";

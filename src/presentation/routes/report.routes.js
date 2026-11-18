@@ -1,6 +1,6 @@
 import { Router } from "express";
 import ReportController from "../controllers/report.controller.js";
-import ReportService from "../../application/use-cases/report.service.js";
+import ReportService from "../../application/use-case/report.service.js";
 import TransactionMySQLRepository from "../../infrastructure/database/mysql/transaction.mysql.repository.js";
 import AuditMySQLRepository from "../../infrastructure/database/mysql/audit.mysql.repository.js";
 import { authMiddleware } from "../middlewares/auth.middleware.js";

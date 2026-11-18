@@ -1,8 +1,8 @@
 import { Router } from "express";
 import TransactionController from "../controllers/transaction.controller.js";
-import TransactionService from "../../application/use-cases/transaction.service.js";
+import TransactionService from "../../application/use-case/transaction.service.js";
 import TransactionMySQLRepository from "../../infrastructure/database/mysql/transaction.mysql.repository.js";
-import CurrencyMongoRepository from "../../infrastructure/database/mongo/currency.mongo.repository.js";
+import CurrencyMongoRepository from "../../infrastructure/database/mongodb/currency.mongo.repository.js";
 import CategoryMySQLRepository from "../../infrastructure/database/mysql/category.mysql.repository.js";
 import BudgetMySQLRepository from "../../infrastructure/database/mysql/budget.mysql.repository.js";
 import AuditMySQLRepository from "../../infrastructure/database/mysql/audit.mysql.repository.js";

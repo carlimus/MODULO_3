@@ -1,5 +1,5 @@
 import BudgetEntity from "../../domain/entities/budget.entity.js";
-import AuditEntity from "../../domain/entities/Audit.entity.js";
+import AuditEntity from "../../domain/entities/audit.entity.js";
  
 export default class BudgetService {
     constructor(budgetRepository, transactionRepository, auditRepository = null) {

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import BudgetController from "../controllers/budget.controller.js";
-import BudgetService from "../../application/use-cases/budget.service.js";
+import BudgetService from "../../application/use-case/budget.service.js";
 import BudgetMySQLRepository from "../../infrastructure/database/mysql/budget.mysql.repository.js";
 import TransactionMySQLRepository from "../../infrastructure/database/mysql/transaction.mysql.repository.js";
 import AuditMySQLRepository from "../../infrastructure/database/mysql/audit.mysql.repository.js";

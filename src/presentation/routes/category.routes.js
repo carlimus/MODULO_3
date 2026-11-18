@@ -1,6 +1,6 @@
 import { Router } from "express";
 import CategoryController from "../controllers/category.controller.js";
-import CategoryService from "../../application/use-cases/category.service.js";
+import CategoryService from "../../application/use-case/category.service.js";
 import CategoryMySQLRepository from "../../infrastructure/database/mysql/category.mysql.repository.js";
 import { authMiddleware } from "../middlewares/auth.middleware.js";
  
