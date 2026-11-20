@@ -83,6 +83,25 @@ router.get("/", authMiddleware, transactionController.getTransactionsByUserId);
  
 /**
  * @swagger
+ * /transactions/{id}/public:
+ *   get:
+ *     summary: Ver comprobante de una transaccion
+ *     tags: [Transactions]
+ *     security: []
+ *     parameters:
+ *      - in: path
+ *        name: id
+ *        required: true
+ *        schema:
+ *          type: integer
+ *     responses:
+ *       200:
+ *         description: Comprobante de la transaccion
+ */
+router.get("/:id/public", transactionController.getPublicTransactionById);
+
+/**
+ * @swagger
  * /transactions/{id}:
  *   put:
  *     summary: Actualizar una transacción existente
