@@ -7,20 +7,23 @@ import CategoryMySQLRepository from "../../infrastructure/database/mysql/categor
 import BudgetMySQLRepository from "../../infrastructure/database/mysql/budget.mysql.repository.js";
 import AuditMySQLRepository from "../../infrastructure/database/mysql/audit.mysql.repository.js";
 import { authMiddleware } from "../middlewares/auth.middleware.js";
- 
+import WalletMySQLRepository from "../../infrastructure/database/mysql/wallet.mysql.repository.js"; 
+
 // Inyección de dependencias
 const transactionRepository = new TransactionMySQLRepository();
 const currencyRepository = new CurrencyMongoRepository();
 const categoryRepository = new CategoryMySQLRepository();
 const budgetRepository = new BudgetMySQLRepository();
 const auditRepository = new AuditMySQLRepository();
+const walletRepository = new WalletMySQLRepository();
  
 const transactionService = new TransactionService(
     transactionRepository,
     currencyRepository,
     categoryRepository,
     budgetRepository,
-    auditRepository
+    auditRepository,
+    walletRepository
 );
 const transactionController = new TransactionController(transactionService);
  
@@ -61,6 +64,11 @@ const router = Router();
  *               categoryId:
  *                 type: integer
  *                 example: 3
+ *               walletId:
+ *                 type: integer
+ *                 nullable: true
+ *                 description: ID opcional de la billetera asociada
+ *                 example: 1
  *     responses:
  *       201:
  *         description: Transacción creada y convertida con el tipo de cambio del día
@@ -109,6 +117,11 @@ router.get("/", authMiddleware, transactionController.getTransactionsByUserId);
  *                 type: string
  *               description:
  *                 type: string
+ *               walletId:
+ *                 type: integer
+ *                 nullable: true
+ *                 description: ID opcional de la billetera asociada
+ *                 example: 1
  *     responses:
  *       200:
  *         description: Transacción actualizada

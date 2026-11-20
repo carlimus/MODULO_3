@@ -11,7 +11,8 @@ export default class TransactionEntity {
         description,
         date,
         categoryId,
-        userId
+        userId,
+        walletId
     }) {
         this.id = id;
         this.type = type;
@@ -27,5 +28,6 @@ export default class TransactionEntity {
         this.date = date || new Date().toISOString().split("T")[0];
         this.categoryId = categoryId;
         this.userId = userId;
+        this.walletId = walletId ?? null;
     }
 }

@@ -2,14 +2,36 @@ import TransactionEntity from "../../domain/entities/transaction.entity.js";
 import AuditEntity from "../../domain/entities/audit.entity.js";
  
 export default class TransactionService {
-    constructor(transactionRepository, currencyRepository, categoryRepository, budgetRepository = null, auditRepository = null) {
+    constructor(transactionRepository, currencyRepository, categoryRepository, budgetRepository = null, auditRepository = null, walletRepository = null) {
         this.transactionRepository = transactionRepository;
         this.currencyRepository = currencyRepository;
         this.categoryRepository = categoryRepository;
         this.budgetRepository = budgetRepository;
         this.auditRepository = auditRepository;
+        this.walletRepository = walletRepository;
     }
  
+
+async validateWallet(walletId, userId) {
+    if (walletId === undefined || walletId === null) {
+        return;
+    }
+
+    if (!Number.isInteger(Number(walletId)) || Number(walletId) <= 0) {
+        throw new Error("Invalid walletId");
+    }
+
+    if (!this.walletRepository) {
+        throw new Error("Wallet repository not configured");
+    }
+
+    const wallet = await this.walletRepository.findById(walletId);
+
+    if (!wallet || wallet.userId !== userId) {
+        throw new Error("Wallet not found or does not belong to the user");
+    }
+}
+
     async createTransaction(data) {
         if (!data.type || !data.amount || !data.categoryId || !data.userId) {
             throw new Error("Type, amount, categoryId and userId are required");
@@ -26,6 +48,7 @@ export default class TransactionService {
             throw new Error(`Category type mismatch: category is ${category.type}`);
         }
  
+        await this.validateWallet(data.walletId, data.userId);
         const txDate = data.date || new Date().toISOString().split("T")[0];
         const currencyCode = (data.currency || "BOB").toUpperCase();
  
@@ -97,6 +120,7 @@ export default class TransactionService {
             throw new Error("Unauthorized: You can only update your own transactions");
         }
  
+        await this.validateWallet(data.walletId, userId);
         const txDate = data.date || existing.date;
         const currencyCode = (data.currency || existing.currency).toUpperCase();
         const amount = data.amount !== undefined ? Number(data.amount) : Number(existing.amount);
