@@ -112,6 +112,22 @@ async validateWallet(walletId, userId) {
     async getTransactionsByUserId(userId) {
         return await this.transactionRepository.findByUserId(userId);
     }
+
+    async getPublicTransactionById(id){
+        const transaction = await this.transactionRepository.findById(id);
+        if(!transaction) {
+            const error = new Error("Transaction not found");
+            error.statusCode = 404;
+            throw error;
+        }
+        if(transaction.isPrivate) {
+            const error = new Error("Transaction is private");
+            error.statusCode = 403;
+            throw error;
+        }
+        const { userId, ...receipt } = transaction;
+        return receipt;
+    }
  
     async updateTransaction(id, data, userId) {
         const existing = await this.transactionRepository.findById(id);

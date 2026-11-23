@@ -12,7 +12,8 @@ export default class TransactionEntity {
         date,
         categoryId,
         userId,
-        walletId
+        walletId,
+        isPrivate
     }) {
         this.id = id;
         this.type = type;
@@ -29,5 +30,6 @@ export default class TransactionEntity {
         this.categoryId = categoryId;
         this.userId = userId;
         this.walletId = walletId ?? null;
+        this.isPrivate = isPrivate === true;
     }
 }
